@@ -32,7 +32,6 @@ export interface CategoryData {
   groups: UtilityGroup[];
   playground: {
     title: string;
-    description: string;
     controls: PlaygroundControl[];
     defaultStyles: string; // Base classes for preview
     previewType: 'text' | 'box' | 'flex' | 'grid' | 'card' | 'animation';
@@ -43,7 +42,6 @@ export const tailwindCategories: CategoryData[] = [
   {
     id: 'flexbox-grid',
     title: 'Flexbox & Grid',
-    description: 'Control layout direction, alignment, wrap, and element gaps.',
     iconName: 'LayoutGrid',
     groups: [
       {
@@ -110,7 +108,6 @@ export const tailwindCategories: CategoryData[] = [
     ],
     playground: {
       title: 'Flexbox & Grid Layout',
-      description: 'Interact with the layout parameters to see how child items rearrange.',
       defaultStyles: 'w-full min-h-[220px] bg-surface-1/50 border border-hairline rounded-xl transition-all duration-300',
       previewType: 'flex',
       controls: [
@@ -202,7 +199,6 @@ export const tailwindCategories: CategoryData[] = [
   {
     id: 'spacing',
     title: 'Spacing',
-    description: 'Set padding, margins, and space between items.',
     iconName: 'Maximize2',
     groups: [
       {
@@ -230,7 +226,6 @@ export const tailwindCategories: CategoryData[] = [
     ],
     playground: {
       title: 'Padding & Margin visualizer',
-      description: 'Adjust padding and margin. The blue block indicates padding, and the orange outline represents the margins.',
       defaultStyles: 'bg-surface-1/50 p-6 border border-hairline rounded-xl relative overflow-hidden flex justify-center items-center',
       previewType: 'box',
       controls: [
@@ -266,7 +261,6 @@ export const tailwindCategories: CategoryData[] = [
   {
     id: 'typography',
     title: 'Typography',
-    description: 'Customize sizes, weights, heights, alignments, and letter spacings.',
     iconName: 'Type',
     groups: [
       {
@@ -328,7 +322,6 @@ export const tailwindCategories: CategoryData[] = [
     ],
     playground: {
       title: 'Typography Playground',
-      description: 'Interact with variables to change text layout, font-size, line-height, alignment, and formatting.',
       defaultStyles: 'bg-surface-1/50 p-6 border border-hairline rounded-xl max-w-full overflow-hidden',
       previewType: 'text',
       controls: [
@@ -432,7 +425,6 @@ export const tailwindCategories: CategoryData[] = [
   {
     id: 'borders-effects',
     title: 'Borders & Shadows',
-    description: 'Configure border thickness, border radius, outline, box shadows, and opacity.',
     iconName: 'Box',
     groups: [
       {
@@ -485,7 +477,6 @@ export const tailwindCategories: CategoryData[] = [
     ],
     playground: {
       title: 'Borders & Shadows Playground',
-      description: 'Interact with parameters to change border-radius, border width, custom shadows, and opacity.',
       defaultStyles: 'bg-surface-1/50 p-12 border border-hairline rounded-xl flex justify-center items-center min-h-[220px]',
       previewType: 'card',
       controls: [
@@ -580,7 +571,6 @@ export const tailwindCategories: CategoryData[] = [
   {
     id: 'effects-filters',
     title: 'Transforms & Filters',
-    description: 'Scale, rotate, translate, skew, and apply visual filters (blur, contrast, brightness).',
     iconName: 'Sliders',
     groups: [
       {
@@ -630,7 +620,6 @@ export const tailwindCategories: CategoryData[] = [
     ],
     playground: {
       title: 'Transforms & Filters Visualizer',
-      description: 'Interact with the 3D-like variables to scale, rotate, translate, and blur a preview component.',
       defaultStyles: 'bg-surface-1/50 p-12 border border-hairline rounded-xl flex justify-center items-center min-h-[260px]',
       previewType: 'card',
       controls: [
@@ -705,7 +694,6 @@ export const tailwindCategories: CategoryData[] = [
   {
     id: 'transitions-animations',
     title: 'Transitions & Animations',
-    description: 'Animate items with standard Tailwind animations, transitions, timings, and durations.',
     iconName: 'Play',
     groups: [
       {
@@ -741,7 +729,6 @@ export const tailwindCategories: CategoryData[] = [
     ],
     playground: {
       title: 'Animations & Hover Transitions Playground',
-      description: 'Trigger animations and hover/active transitions. Hover or click the component in the preview box to trigger transitions.',
       defaultStyles: 'bg-surface-1/50 p-12 border border-hairline rounded-xl flex justify-center items-center min-h-[220px]',
       previewType: 'animation',
       controls: [

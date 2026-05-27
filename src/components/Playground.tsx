@@ -59,11 +59,32 @@ export const Playground: React.FC<PlaygroundProps> = ({
     }
 
     if (previewType === 'text') {
-      return `import React from 'react';\n\nexport const Typography: React.FC = () => {\n  return (\n    <div className="${compiledClasses}">\n      <h4 className="font-bold text-ink mb-1.5 tracking-tight text-lg">Linear Web Console</h4>\n      <p className="text-ink-subtle text-xs leading-relaxed">Linear is the issue tracker you of course want to use.</p>\n    </div>\n  );\n};`;
+      const alignVal = activeStyles['align'] !== undefined ? activeStyles['align'] : 'text-center';
+      const marginClass = alignVal === 'text-center' ? 'mx-auto' : alignVal === 'text-right' ? 'ml-auto' : '';
+      const marginStr = marginClass ? ` ${marginClass}` : '';
+      
+      const sizeVal = activeStyles['size'] !== undefined ? activeStyles['size'] : 'text-xl';
+      const weightVal = activeStyles['weight'] !== undefined ? activeStyles['weight'] : 'font-normal';
+      const leadingVal = activeStyles['leading'] !== undefined ? activeStyles['leading'] : 'leading-normal';
+      const trackingVal = activeStyles['tracking'] !== undefined ? activeStyles['tracking'] : 'tracking-normal';
+      const colorVal = activeStyles['color'] !== undefined ? activeStyles['color'] : 'text-indigo-400';
+      const decorationVal = activeStyles['decoration'] !== undefined ? activeStyles['decoration'] : 'no-underline';
+
+      const pClasses = `${sizeVal} ${weightVal} ${leadingVal} ${trackingVal} ${colorVal} ${decorationVal} max-w-lg${marginStr}`;
+
+      return `import React from 'react';\n\nexport const Typography: React.FC = () => {\n  return (\n    <div className="${alignVal}">\n      <h4 className="font-bold text-ink mb-1.5 tracking-tight text-lg">MarkForMC</h4>\n      <p className="${pClasses}">\n        Mastercard's editorial typography is set in MarkForMC, a custom geometric sans. Headlines use a tight -2% letter spacing, while body text features a signature 450 weight for a soft, premium reading experience.\n      </p>\n    </div>\n  );\n};`;
     }
 
     if (previewType === 'card') {
-      return `import React from 'react';\nimport { User } from 'lucide-react';\n\nexport const ProfileCard: React.FC = () => {\n  return (\n    <div className="w-60 bg-surface-2 p-6 flex flex-col items-center text-center border border-hairline rounded-lg shadow-sm lifted-edge ${compiledClasses}">\n      <div className="w-10 h-10 rounded-full bg-surface-3 flex items-center justify-center shadow-sm border border-hairline mb-3">\n        <User className="w-5 h-5 text-ink-muted" />\n      </div>\n      <h4 className="text-ink font-semibold text-sm">Alex Rivera</h4>\n      <p className="text-primary text-[10px] font-semibold uppercase tracking-wider mt-0.5">Frontend Engineer</p>\n      <p className="text-ink-subtle text-xs mt-2.5 leading-relaxed">Enjoys constructing fluid interfaces and highly-interactive user experiences.</p>\n      <button className="w-full mt-4 bg-primary hover:bg-primary-hover text-white text-xs font-semibold py-1.5 px-3 rounded-md shadow-sm transition-all">\n        Connect\n      </button>\n    </div>\n  );\n};`;
+      const hasRoundedControl = category.playground.controls.some(c => c.id === 'rounded');
+      const hasBorderWidthControl = category.playground.controls.some(c => c.id === 'borderWidth');
+      const hasShadowControl = category.playground.controls.some(c => c.id === 'shadow');
+
+      const roundedClass = hasRoundedControl ? '' : ' rounded-lg';
+      const borderClass = hasBorderWidthControl ? '' : ' border border-hairline';
+      const shadowClass = hasShadowControl ? '' : ' shadow-sm';
+
+      return `import React from 'react';\nimport { User } from 'lucide-react';\n\nexport const ProfileCard: React.FC = () => {\n  return (\n    <div className="w-60 bg-surface-2 p-6 flex flex-col items-center text-center lifted-edge${roundedClass}${borderClass}${shadowClass} ${compiledClasses}">\n      <div className="w-10 h-10 rounded-full bg-surface-3 flex items-center justify-center shadow-sm border border-hairline mb-3">\n        <User className="w-5 h-5 text-ink-muted" />\n      </div>\n      <h4 className="text-ink font-semibold text-sm">Alex Rivera</h4>\n      <p className="text-primary text-[10px] font-semibold uppercase tracking-wider mt-0.5">Frontend Engineer</p>\n      <p className="text-ink-subtle text-xs mt-2.5 leading-relaxed">Enjoys constructing fluid interfaces and highly-interactive user experiences.</p>\n      <button className="w-full mt-4 bg-primary hover:bg-primary-hover text-white text-xs font-semibold py-1.5 px-3 rounded-md shadow-sm transition-all">\n        Connect\n      </button>\n    </div>\n  );\n};`;
     }
 
     if (previewType === 'animation') {
@@ -224,14 +245,24 @@ export const Playground: React.FC<PlaygroundProps> = ({
     }
 
     if (previewType === 'text') {
+      const alignVal = activeStyles['align'] !== undefined ? activeStyles['align'] : 'text-center';
+      const marginClass = alignVal === 'text-center' ? 'mx-auto' : alignVal === 'text-right' ? 'ml-auto' : '';
+
+      const sizeVal = activeStyles['size'] !== undefined ? activeStyles['size'] : 'text-xl';
+      const weightVal = activeStyles['weight'] !== undefined ? activeStyles['weight'] : 'font-normal';
+      const leadingVal = activeStyles['leading'] !== undefined ? activeStyles['leading'] : 'leading-normal';
+      const trackingVal = activeStyles['tracking'] !== undefined ? activeStyles['tracking'] : 'tracking-normal';
+      const colorVal = activeStyles['color'] !== undefined ? activeStyles['color'] : 'text-indigo-400';
+      const decorationVal = activeStyles['decoration'] !== undefined ? activeStyles['decoration'] : 'no-underline';
+
       return (
         <div className={`${category.playground.defaultStyles} bg-grid-pattern`}>
-          <div className={`${compiledClasses}`}>
+          <div className={`${alignVal}`}>
             <h4 className="font-semibold text-ink mb-1.5 tracking-tight text-lg">
-              Linear Display Sans
+              MarkForMC
             </h4>
-            <p className="text-ink-muted font-normal text-xs leading-relaxed max-w-lg">
-              Linear's visual vocabulary focuses on clean typography and structured hierarchy. 
+            <p className={`max-w-lg ${marginClass} ${sizeVal} ${weightVal} ${leadingVal} ${trackingVal} ${colorVal} ${decorationVal}`}>
+              Mastercard's editorial typography is set in MarkForMC, a custom geometric sans. 
               Applying classes like <code className="text-[11px] text-primary mx-0.5 bg-surface-2 py-0.5 px-1.5 rounded border border-hairline">text-2xl</code> 
               and <code className="text-[11px] text-primary mx-0.5 bg-surface-2 py-0.5 px-1.5 rounded border border-hairline">leading-relaxed</code> 
               alters letter tracking and line heights immediately. Slide the controls to adjust text behaviors.
@@ -242,11 +273,19 @@ export const Playground: React.FC<PlaygroundProps> = ({
     }
 
     if (previewType === 'card') {
+      const hasRoundedControl = category.playground.controls.some(c => c.id === 'rounded');
+      const hasBorderWidthControl = category.playground.controls.some(c => c.id === 'borderWidth');
+      const hasShadowControl = category.playground.controls.some(c => c.id === 'shadow');
+
+      const roundedClass = hasRoundedControl ? '' : 'rounded-lg';
+      const borderClass = hasBorderWidthControl ? '' : 'border border-hairline';
+      const shadowClass = hasShadowControl ? '' : 'shadow-sm';
+
       return (
         <div className={`${category.playground.defaultStyles} bg-grid-pattern`}>
           <motion.div
             layout
-            className={`w-60 bg-surface-2 p-6 flex flex-col items-center text-center transition-all border border-hairline rounded-lg shadow-sm lifted-edge ${compiledClasses}`}
+            className={`w-60 bg-surface-2 p-6 flex flex-col items-center text-center transition-all lifted-edge ${roundedClass} ${borderClass} ${shadowClass} ${compiledClasses}`}
           >
             {/* Avatar */}
             <div className="w-10 h-10 rounded-full bg-surface-3 flex items-center justify-center shadow-sm border border-hairline mb-3">

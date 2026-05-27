@@ -107,12 +107,6 @@ function App() {
         {/* Live Playground Showcase */}
         {!searchQuery && (
           <section className="space-y-3 max-w-5xl mx-auto">
-            <div className="flex items-center justify-between">
-              <h3 className="text-[10px] uppercase tracking-mc-eyebrow text-ink-subtle font-bold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                Live Showcase Playground
-              </h3>
-            </div>
             <Playground
               category={activeCategory}
               activeStyles={playgroundStates[selectedCategoryId]}
