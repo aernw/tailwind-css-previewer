@@ -99,7 +99,7 @@ export const CheatSheetGrid: React.FC<CheatSheetGridProps> = ({
         <div key={category.id} className="space-y-5">
           {searchQuery && (
             <div className="flex items-center gap-2 border-b border-hairline pb-2">
-              <span className="text-[10px] uppercase tracking-wider text-primary font-bold bg-primary/5 px-2 py-0.5 rounded border border-primary/10">
+              <span className="text-[10px] uppercase tracking-mc-eyebrow text-primary font-bold bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10">
                 {category.title}
               </span>
             </div>
@@ -107,26 +107,26 @@ export const CheatSheetGrid: React.FC<CheatSheetGridProps> = ({
 
           {category.groups.map((group, groupIdx) => (
             <div key={groupIdx} className="space-y-2.5">
-              <h3 className="text-xs font-semibold text-ink flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-primary" />
+              <h3 className="text-xs font-bold text-ink flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                 {group.name}
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {group.classes.map((cls, clsIdx) => {
                   const isCopied = copiedClass === cls.className;
                   return (
                     <div
                       key={clsIdx}
-                      className="bg-surface-1 border border-hairline hover:border-hairline-strong hover:bg-surface-2 p-3 rounded-lg flex items-center justify-between group relative overflow-hidden transition-all duration-200 lifted-edge"
+                      className="bg-surface-1 border border-hairline hover:border-hairline-strong hover:bg-surface-2 p-4 rounded-mc-btn flex items-center justify-between group relative overflow-hidden transition-all duration-200 shadow-sm"
                     >
                       <div className="flex-1 min-w-0 pr-3">
                         <div className="flex items-center gap-2">
-                          <code className="text-xs font-mono font-semibold text-primary bg-primary/5 px-2 py-0.5 rounded border border-primary/10 select-all">
+                          <code className="text-xs font-mono font-semibold text-primary bg-primary/5 px-2.5 py-0.5 rounded-full border border-primary/10 select-all">
                             {cls.className}
                           </code>
                         </div>
-                        <p className="text-[10px] font-mono text-ink-subtle mt-2 truncate bg-canvas p-1.5 rounded border border-hairline">
+                        <p className="text-[10px] font-mono text-ink-subtle mt-2.5 truncate bg-canvas p-1.5 rounded-mc-btn border border-hairline">
                           {cls.cssProperty}
                         </p>
                       </div>
@@ -136,7 +136,7 @@ export const CheatSheetGrid: React.FC<CheatSheetGridProps> = ({
                         <button
                           onClick={() => handleCopy(cls.className)}
                           title="Copy class to clipboard"
-                          className={`p-1.5 rounded-md transition-all ${
+                          className={`p-2 rounded-full transition-all ${
                             isCopied
                               ? 'bg-semantic-success/10 text-semantic-success border border-semantic-success/20'
                               : 'bg-surface-3 hover:bg-surface-4 text-ink-subtle hover:text-ink border border-hairline'
@@ -153,7 +153,7 @@ export const CheatSheetGrid: React.FC<CheatSheetGridProps> = ({
                         <button
                           onClick={() => findMatchingControlAndApply(category, cls.className)}
                           title="Apply to visual playground"
-                          className="p-1.5 rounded-md bg-primary/5 hover:bg-primary/10 text-primary hover:text-primary-hover border border-primary/20 hover:border-primary-focus transition-all"
+                          className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 text-primary hover:text-primary-hover border border-primary/20 hover:border-primary-focus transition-all"
                         >
                           <Icons.Play className="w-3.5 h-3.5" />
                         </button>

@@ -1,68 +1,88 @@
-/* Custom fonts import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Custom fonts import: Sofia Sans is the closest open-source match to MarkForMC */
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @import "tailwindcss";
 
-/* Configure custom theme tokens for Tailwind v4 following Linear Design Spec */
+/* Configure custom theme tokens for Tailwind v4 following Mastercard Spec */
 @theme {
-  --font-sans: 'Inter', SF Pro Display, -apple-system, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SF Mono, monospace;
+  --font-sans: 'Sofia Sans', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* Colors default to Dark Mode values */
-  --color-canvas: #010102;
-  --color-surface-1: #09090b;
-  --color-surface-2: #121214;
-  --color-surface-3: #1a1a1e;
-  --color-surface-4: #232329;
+  /* Dynamically mapped colors */
+  --color-canvas: var(--canvas);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
 
-  --color-hairline: #23252a;
-  --color-hairline-strong: #353842;
-  --color-hairline-tertiary: #1b1c21;
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-hairline-tertiary: var(--hairline-tertiary);
 
-  --color-ink: #f7f8f8;
-  --color-ink-muted: #d0d6e0;
-  --color-ink-subtle: #8a8f98;
-  --color-ink-tertiary: #62666d;
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-tertiary: var(--ink-tertiary);
 
-  --color-primary: #5e6ad2;
-  --color-primary-hover: #828fff;
-  --color-primary-focus: #5e69d1;
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-focus: var(--primary-focus);
   --color-brand-secure: #7a7fad;
 
   --color-semantic-success: #27a644;
 
-  /* Letter Spacing mapped to Linear Spec */
-  --tracking-display-xl: -3.0px;
-  --tracking-display-lg: -1.8px;
-  --tracking-display-md: -1.0px;
-  --tracking-headline: -0.6px;
-  --tracking-card-title: -0.4px;
-  --tracking-subhead: -0.2px;
-  --tracking-body-lg: -0.1px;
-  --tracking-body: -0.05px;
-  --tracking-eyebrow: 0.4px;
+  /* Custom Border Radius from Mastercard Spec */
+  --radius-mc-btn: 20px;
+  --radius-mc-card: 40px;
+
+  /* Custom Letter Spacing */
+  --tracking-mc-head: -0.02em;
+  --tracking-mc-eyebrow: 0.04em;
 }
 
-/* Light Mode Overrides: Directly redefine Tailwind v4 compiled CSS variables */
-.light {
-  --color-canvas: #ffffff;
-  --color-surface-1: #f7f8fa;
-  --color-surface-2: #eff1f4;
-  --color-surface-3: #e5e8eb;
-  --color-surface-4: #dadde2;
+/* CSS Theme Definitions */
+:root {
+  /* Default: Mastercard Light Mode (Warm putty cream canvas) */
+  --canvas: #f3f0ee;
+  --surface-1: #fcfbfa; /* Lifted Cream */
+  --surface-2: #ffffff; /* White */
+  --surface-3: #f4f4f4; /* Soft Bone */
+  --surface-4: #e8e5e2; /* Hover Cream */
 
-  --color-hairline: #e2e4e9;
-  --color-hairline-strong: #c2c5cc;
-  --color-hairline-tertiary: #f0f2f5;
+  --hairline: #d1cdc7; /* Dust Taupe */
+  --hairline-strong: #9a3a0a; /* Clay Brown */
+  --hairline-tertiary: #e8e5e2;
 
-  --color-ink: #0d0e11;
-  --color-ink-muted: #3c3f46;
-  --color-ink-subtle: #6c7078;
-  --color-ink-tertiary: #9b9fa8;
+  --ink: #141413; /* Ink Black */
+  --ink-muted: #262627; /* Charcoal */
+  --ink-subtle: #696969; /* Slate Gray */
+  --ink-tertiary: #a8a49e;
 
-  --color-primary: #5e6ad2;
-  --color-primary-hover: #4b55b3; /* Slightly darker lavender for readable contrast on white background */
-  --color-primary-focus: #5e69d1;
+  --primary: #cf4500; /* Signal Orange */
+  --primary-hover: #f37338; /* Light Signal Orange */
+  --primary-focus: #9a3a0a;
+}
+
+.dark {
+  /* Mastercard Inverted Dark Mode */
+  --canvas: #141413; /* Ink Black */
+  --surface-1: #1c1c1b;
+  --surface-2: #242423;
+  --surface-3: #2b2b2a;
+  --surface-4: #323231;
+
+  --hairline: #383836;
+  --hairline-strong: #f37338;
+  --hairline-tertiary: #242423;
+
+  --ink: #f3f0ee; /* Canvas Cream text */
+  --ink-muted: #d1cdc7;
+  --ink-subtle: #8a8a88;
+  --ink-tertiary: #555555;
+
+  --primary: #f37338; /* Light Signal Orange as primary in dark mode */
+  --primary-hover: #cf4500;
+  --primary-focus: #9a3a0a;
 }
 
 /* Base styles and custom styling */
@@ -81,49 +101,53 @@
     @apply bg-canvas;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-surface-3 rounded-full hover:bg-surface-4 transition-colors;
+    @apply bg-hairline rounded-full hover:bg-ink-tertiary transition-colors;
   }
 
-  /* Form and inputs styling */
+  /* Custom Range Slider */
   input[type="range"]::-webkit-slider-runnable-track {
-    @apply bg-surface-3 rounded-full transition-colors duration-200;
+    @apply bg-surface-3 border border-hairline rounded-full transition-colors duration-200;
   }
   input[type="range"]::-webkit-slider-thumb {
-    @apply bg-primary hover:bg-primary-hover border-none rounded-full w-3.5 h-3.5 -mt-1 transition-all shadow-sm;
+    @apply bg-primary hover:bg-primary-hover border-none rounded-full w-3.5 h-3.5 -mt-1 transition-all shadow-md;
   }
 }
 
-/* Subtle white edge highlight on the top edge of lifted panels */
+/* Subtle white highlight on the top edge of dark panels (turned off in light mode) */
 .lifted-edge {
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  transition: box-shadow 0.2s ease;
 }
 
 .light .lifted-edge {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
 }
 
-/* Linear-styled cards */
+/* Mastercard-styled cards */
 .linear-card {
-  @apply bg-surface-1 border border-hairline rounded-lg transition-all duration-200;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
-}
-
-.light .linear-card {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.015);
+  @apply bg-surface-1 border border-hairline rounded-mc-btn transition-all duration-200;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.01);
 }
 
 .linear-card:hover {
   @apply bg-surface-2 border-hairline-strong;
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.03);
 }
 
 /* Animated dot grid background for the playground (very subtle tint) */
 .bg-grid-pattern {
-  background-size: 16px 16px;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   transition: background-image 0.2s ease;
 }
 
-.light .bg-grid-pattern {
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+.dark .bg-grid-pattern {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Orbital connecting arcs decorative elements */
+.orbital-arc {
+  border: 1px dashed var(--color-primary-hover);
+  border-bottom: none;
+  border-left: none;
+  opacity: 0.25;
 }

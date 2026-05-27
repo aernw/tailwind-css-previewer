@@ -49,26 +49,26 @@ export const Playground: React.FC<PlaygroundProps> = ({
       const childCount = activeStyles['itemsCount'] || 3;
       let childrenJSX = '';
       for (let i = 1; i <= childCount; i++) {
-        childrenJSX += `\n        <div className="bg-surface-2 border border-hairline text-ink font-medium p-6 rounded-md shadow-sm flex items-center justify-center min-w-14 h-14">\n          ${i}\n        </div>`;
+        childrenJSX += `\n        <div className="bg-surface-2 border border-hairline text-ink font-semibold w-14 h-14 rounded-full shadow-sm flex items-center justify-center">\n          ${i}\n        </div>`;
       }
-      return `import React from 'react';\n\nexport const FlexLayout: React.FC = () => {\n  return (\n    <div className="${isGrid ? 'grid' : 'flex'} ${compiledClasses}">${childrenJSX}\n    </div>\n  );\n};`;
+      return `import React from 'react';\n\nexport const FlexLayout: React.FC = () => {\n  return (\n    <div className="${isGrid ? 'grid' : 'flex'} ${compiledClasses}">\n      {/* Hand-drawn orbital paths connecting children can be applied here */}${childrenJSX}\n    </div>\n  );\n};`;
     }
 
     if (previewType === 'box') {
-      return `import React from 'react';\nimport { Box } from 'lucide-react';\n\nexport const SpacingBox: React.FC = () => {\n  return (\n    <div className="bg-primary text-white font-medium px-4 py-2 rounded-md shadow-sm ${compiledClasses}">\n      Spacing Element\n    </div>\n  );\n};`;
+      return `import React from 'react';\n\nexport const SpacingBox: React.FC = () => {\n  return (\n    <div className="bg-primary text-white font-medium px-6 py-2 rounded-mc-btn shadow-sm ${compiledClasses}">\n      Spacing Element\n    </div>\n  );\n};`;
     }
 
     if (previewType === 'text') {
-      return `import React from 'react';\n\nexport const Typography: React.FC = () => {\n  return (\n    <div className="${compiledClasses}">\n      <h4 className="font-bold text-ink mb-1.5 tracking-tight text-lg">Linear Web Console</h4>\n      <p className="text-ink-subtle text-xs leading-relaxed">Linear is the issue tracker you of course want to use.</p>\n    </div>\n  );\n};`;
+      return `import React from 'react';\n\nexport const Typography: React.FC = () => {\n  return (\n    <div className="${compiledClasses}">\n      <h4 className="font-medium text-ink mb-1.5 tracking-mc-head text-lg">MarkForMC Display</h4>\n      <p className="text-ink-subtle text-xs leading-relaxed font-[450]">Mastercard uses a half-step 450 weight for exceptionally soft reading tone.</p>\n    </div>\n  );\n};`;
     }
 
     if (previewType === 'card') {
-      return `import React from 'react';\nimport { User } from 'lucide-react';\n\nexport const ProfileCard: React.FC = () => {\n  return (\n    <div className="w-60 bg-surface-2 p-6 flex flex-col items-center text-center border border-hairline rounded-lg shadow-sm lifted-edge ${compiledClasses}">\n      <div className="w-10 h-10 rounded-full bg-surface-3 flex items-center justify-center shadow-sm border border-hairline mb-3">\n        <User className="w-5 h-5 text-ink-muted" />\n      </div>\n      <h4 className="text-ink font-semibold text-sm">Alex Rivera</h4>\n      <p className="text-primary text-[10px] font-semibold uppercase tracking-wider mt-0.5">Frontend Engineer</p>\n      <p className="text-ink-subtle text-xs mt-2.5 leading-relaxed">Enjoys constructing fluid interfaces and highly-interactive user experiences.</p>\n      <button className="w-full mt-4 bg-primary hover:bg-primary-hover text-white text-xs font-semibold py-1.5 px-3 rounded-md shadow-sm transition-all">\n        Connect\n      </button>\n    </div>\n  );\n};`;
+      return `import React from 'react';\nimport { User, ArrowRight } from 'lucide-react';\n\nexport const SolutionCard: React.FC = () => {\n  return (\n    <div className="w-60 bg-surface-2 p-6 border border-hairline rounded-mc-btn shadow-sm relative ${compiledClasses}">\n      {/* Circular portrait with satellite CTA */}\n      <div className="w-24 h-24 rounded-full bg-surface-3 flex items-center justify-center border border-hairline relative mx-auto mb-4">\n        <User className="w-10 h-10 text-ink-subtle" />\n        <button className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-white text-ink border border-hairline shadow-md flex items-center justify-center translate-x-1.5 translate-y-1.5 hover:scale-105 transition-transform">\n          <ArrowRight className="w-4 h-4" />\n        </button>\n      </div>\n      <span className="text-[10px] text-primary font-bold tracking-mc-eyebrow uppercase mb-1 block">• SOLUTIONS</span>\n      <h4 className="text-ink font-semibold text-sm tracking-mc-head">Alex Rivera</h4>\n      <p className="text-ink-subtle text-[11px] font-medium">Digital Payments</p>\n      <button className="w-full mt-4 bg-ink hover:bg-ink/90 text-canvas text-xs font-semibold py-2 px-4 rounded-mc-btn transition-all border border-ink shadow-sm">\n        Connect\n      </button>\n    </div>\n  );\n};`;
     }
 
     if (previewType === 'animation') {
       const cleanClasses = compiledClasses.split(' ').map(c => c.trim()).join(' ');
-      return `import React from 'react';\nimport { Rocket } from 'lucide-react';\n\nexport const AnimatedRocket: React.FC = () => {\n  return (\n    <div className="w-24 h-24 bg-surface-2 text-primary rounded-lg border border-hairline shadow-sm flex items-center justify-center cursor-pointer transition-all lifted-edge ${cleanClasses}">\n      <Rocket className="w-10 h-10 text-primary" />\n    </div>\n  );\n};`;
+      return `import React from 'react';\nimport { Rocket } from 'lucide-react';\n\nexport const AnimatedCircle: React.FC = () => {\n  return (\n    <div className="w-24 h-24 bg-surface-2 text-primary rounded-full border border-hairline shadow-sm flex items-center justify-center cursor-pointer transition-all ${cleanClasses}">\n      <Rocket className="w-10 h-10 text-primary" />\n    </div>\n  );\n};`;
     }
 
     return `import React from 'react';\n\nexport const Preview: React.FC = () => {\n  return <div>Preview</div>;\n};`;
@@ -99,10 +99,10 @@ export const Playground: React.FC<PlaygroundProps> = ({
           return (
             <div key={ctrl.id} className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-[10px] font-semibold text-ink-subtle tracking-wider uppercase">
+                <label className="text-[10px] font-bold text-ink-subtle tracking-mc-eyebrow uppercase">
                   {ctrl.label}
                 </label>
-                <span className="text-[10px] font-mono text-primary font-medium bg-primary/5 px-1.5 py-0.5 rounded border border-primary/10">
+                <span className="text-[10px] font-mono text-primary font-bold bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10">
                   {ctrl.type === 'slider' 
                     ? (ctrl.valueMapper ? ctrl.valueMapper(value) : `${ctrl.classPrefix}${value}`)
                     : value
@@ -119,7 +119,7 @@ export const Playground: React.FC<PlaygroundProps> = ({
                     step={ctrl.step}
                     value={value}
                     onChange={(e) => onControlChange(ctrl.id, Number(e.target.value))}
-                    className="flex-1 h-1 bg-surface-3 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+                    className="flex-1 h-1 bg-surface-3 rounded-full appearance-none cursor-pointer accent-primary focus:outline-none"
                   />
                 </div>
               )}
@@ -128,7 +128,7 @@ export const Playground: React.FC<PlaygroundProps> = ({
                 <select
                   value={value}
                   onChange={(e) => onControlChange(ctrl.id, e.target.value)}
-                  className="w-full bg-surface-2 border border-hairline text-ink text-xs rounded-md px-3 py-2 hover:border-hairline-strong hover:bg-surface-3 focus:border-primary-focus focus:outline-none focus:ring-1 focus:ring-primary/30 transition-all cursor-pointer"
+                  className="w-full bg-surface-2 border border-hairline text-ink text-xs rounded-mc-btn px-3 py-2.5 hover:border-hairline-strong hover:bg-surface-3 focus:border-primary focus:outline-none transition-all cursor-pointer shadow-sm"
                 >
                   {ctrl.options.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -156,8 +156,13 @@ export const Playground: React.FC<PlaygroundProps> = ({
       return (
         <motion.div
           layout
-          className={`${isGrid ? 'grid' : 'flex'} ${compiledClasses} ${category.playground.defaultStyles} bg-grid-pattern`}
+          className={`${isGrid ? 'grid' : 'flex'} ${compiledClasses} ${category.playground.defaultStyles} bg-grid-pattern relative`}
         >
+          {/* Subtle connecting dotted arcs representing Mastercard constellation trajectories */}
+          {!isGrid && (
+            <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 h-16 orbital-arc rounded-t-full pointer-events-none" />
+          )}
+
           <AnimatePresence initial={false}>
             {items.map((num) => (
               <motion.div
@@ -166,8 +171,8 @@ export const Playground: React.FC<PlaygroundProps> = ({
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                className="bg-surface-2 border border-hairline text-ink font-medium w-14 h-14 rounded-md flex items-center justify-center shadow-sm lifted-edge cursor-default"
+                transition={{ type: 'spring', stiffness: 450, damping: 30 }}
+                className="bg-surface-2 border border-hairline text-ink font-semibold w-14 h-14 rounded-full flex items-center justify-center shadow-sm cursor-default relative z-10"
               >
                 {num}
               </motion.div>
@@ -189,30 +194,30 @@ export const Playground: React.FC<PlaygroundProps> = ({
 
       return (
         <div className={`${category.playground.defaultStyles} bg-grid-pattern`}>
-          {/* DevTools style Margin Box (Orange-tinted area) */}
+          {/* DevTools style Margin Box (Signal Orange-tinted area) */}
           <div 
-            className="border border-orange-500/20 bg-orange-500/5 rounded-md flex items-center justify-center transition-all duration-200"
+            className="border border-hairline-strong/20 bg-hairline-strong/5 rounded-mc-btn flex items-center justify-center transition-all duration-200"
             style={{ padding: `${mSize}px` }}
           >
             {/* Margin Label */}
-            <div className="absolute top-2 left-2 text-[9px] uppercase tracking-wider text-orange-400 font-bold bg-canvas border border-orange-500/25 px-1.5 py-0.5 rounded shadow-sm">
+            <div className="absolute top-2 left-2 text-[9px] uppercase tracking-wider text-hairline-strong font-bold bg-canvas border border-hairline px-2 py-0.5 rounded-full shadow-sm">
               margin: {mSize}px
             </div>
 
-            {/* DevTools style Padding Box (Green-tinted area) */}
+            {/* DevTools style Padding Box (Light Orange-tinted area) */}
             <div 
-              className="bg-emerald-500/5 border border-emerald-500/20 rounded-md flex items-center justify-center w-full min-h-[100px] transition-all duration-200"
+              className="bg-primary/5 border border-primary/20 rounded-mc-btn flex items-center justify-center w-full min-h-[100px] transition-all duration-200"
               style={{ padding: `${pSize}px` }}
             >
               {/* Padding Label */}
-              <div className="absolute bottom-2 right-2 text-[9px] uppercase tracking-wider text-emerald-400 font-bold bg-canvas border border-emerald-500/25 px-1.5 py-0.5 rounded shadow-sm">
+              <div className="absolute bottom-2 right-2 text-[9px] uppercase tracking-wider text-primary font-bold bg-canvas border border-primary/20 px-2 py-0.5 rounded-full shadow-sm">
                 padding: {pSize}px
               </div>
 
               {/* Inner Content Block */}
               <motion.div 
                 layout
-                className="w-full bg-primary text-white font-medium py-3 rounded-md shadow-sm text-center max-w-xs cursor-default flex justify-center items-center gap-2 border border-primary-hover/20 lifted-edge"
+                className="w-full bg-primary text-white font-semibold py-3 rounded-mc-btn shadow-sm text-center max-w-xs cursor-default flex justify-center items-center gap-2 border border-primary/10"
               >
                 <Icons.Box className="w-4 h-4" />
                 <span>Content Box</span>
@@ -227,14 +232,14 @@ export const Playground: React.FC<PlaygroundProps> = ({
       return (
         <div className={`${category.playground.defaultStyles} bg-grid-pattern`}>
           <div className={`${compiledClasses}`}>
-            <h4 className="font-semibold text-ink mb-1.5 tracking-tight text-lg">
-              Linear Display Sans
+            <h4 className="font-medium text-ink mb-1.5 tracking-mc-head text-lg">
+              MarkForMC Geometric Sans
             </h4>
-            <p className="text-ink-muted font-normal text-xs leading-relaxed max-w-lg">
-              Linear's visual vocabulary focuses on clean typography and structured hierarchy. 
-              Applying classes like <code className="text-[11px] text-primary mx-0.5 bg-surface-2 py-0.5 px-1.5 rounded border border-hairline">text-2xl</code> 
-              and <code className="text-[11px] text-primary mx-0.5 bg-surface-2 py-0.5 px-1.5 rounded border border-hairline">leading-relaxed</code> 
-              alters letter tracking and line heights immediately. Slide the controls to adjust text behaviors.
+            <p className="text-ink-subtle font-[450] text-xs leading-relaxed max-w-lg">
+              Mastercard's typography utilizes geometric shapes and weight 450 for paragraphs. 
+              Adding typography utility classes like <code className="text-[11px] text-primary mx-0.5 bg-surface-2 py-0.5 px-1.5 rounded-full border border-hairline">text-2xl</code> 
+              or <code className="text-[11px] text-primary mx-0.5 bg-surface-2 py-0.5 px-1.5 rounded-full border border-hairline">tracking-wide</code> 
+              instantly manipulates the geometric rhythm. Adjust the controllers to test text variants.
             </p>
           </div>
         </div>
@@ -246,22 +251,28 @@ export const Playground: React.FC<PlaygroundProps> = ({
         <div className={`${category.playground.defaultStyles} bg-grid-pattern`}>
           <motion.div
             layout
-            className={`w-60 bg-surface-2 p-6 flex flex-col items-center text-center transition-all border border-hairline rounded-lg shadow-sm lifted-edge ${compiledClasses}`}
+            className={`w-60 bg-surface-2 p-6 flex flex-col items-center text-center transition-all border border-hairline rounded-mc-btn shadow-sm ${compiledClasses}`}
           >
-            {/* Avatar */}
-            <div className="w-10 h-10 rounded-full bg-surface-3 flex items-center justify-center shadow-sm border border-hairline mb-3">
-              <Icons.User className="w-5 h-5 text-ink-muted" />
+            {/* Circular Portrait with Satellite CTA */}
+            <div className="w-20 h-20 rounded-full bg-surface-3 flex items-center justify-center border border-hairline relative mx-auto mb-3">
+              <Icons.User className="w-8 h-8 text-ink-subtle" />
+              <button className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-white text-ink border border-hairline shadow-md flex items-center justify-center translate-x-1 translate-y-1 hover:scale-110 transition-transform cursor-pointer">
+                <Icons.ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
             
-            <h4 className="text-ink font-semibold text-sm">Alex Rivera</h4>
-            <p className="text-primary text-[10px] font-semibold uppercase tracking-wider mt-0.5">
-              Frontend Engineer
+            <span className="text-[9px] text-primary font-bold tracking-mc-eyebrow uppercase mb-1">
+              • SOLUTIONS
+            </span>
+            <h4 className="text-ink font-semibold text-sm tracking-mc-head">Alex Rivera</h4>
+            <p className="text-ink-subtle text-[11px] font-medium uppercase mt-0.5">
+              Digital Payments
             </p>
-            <p className="text-ink-subtle text-xs mt-2.5 leading-relaxed">
+            <p className="text-ink-subtle text-xs mt-2.5 leading-relaxed font-[450]">
               Enjoys constructing fluid interfaces and highly-interactive user experiences.
             </p>
             
-            <button className="w-full mt-4 bg-primary hover:bg-primary-hover text-white text-xs font-semibold py-1.5 px-3 rounded-md shadow-sm transition-all">
+            <button className="w-full mt-4 bg-ink hover:bg-ink/95 text-canvas text-xs font-semibold py-2 px-3 rounded-mc-btn shadow-sm transition-all border border-ink">
               Connect
             </button>
           </motion.div>
@@ -276,7 +287,7 @@ export const Playground: React.FC<PlaygroundProps> = ({
         <div className={`${category.playground.defaultStyles} bg-grid-pattern`}>
           <div className="flex flex-col items-center gap-2">
             <div
-              className={`w-24 h-24 bg-surface-2 text-primary rounded-lg border border-hairline shadow-sm flex items-center justify-center cursor-pointer transition-all lifted-edge ${cleanClasses}`}
+              className={`w-24 h-24 bg-surface-2 text-primary rounded-full border border-hairline shadow-sm flex items-center justify-center cursor-pointer transition-all ${cleanClasses}`}
             >
               <Icons.Rocket className="w-10 h-10 text-primary" />
             </div>
@@ -292,11 +303,11 @@ export const Playground: React.FC<PlaygroundProps> = ({
   };
 
   return (
-    <div className="bg-surface-1 border border-hairline p-5 rounded-lg flex flex-col lg:flex-row gap-6 shadow-sm relative overflow-hidden lifted-edge">
+    <div className="bg-surface-1 border border-hairline p-5 rounded-mc-btn flex flex-col lg:flex-row gap-6 shadow-sm relative overflow-hidden">
       {/* Control Panel (Left Side) */}
       <div className="flex-1 space-y-4">
         <div>
-          <h2 className="text-sm font-semibold text-ink tracking-subhead flex items-center gap-2 m-0 leading-tight">
+          <h2 className="text-sm font-semibold text-ink tracking-mc-head flex items-center gap-2 m-0 leading-tight">
             <Icons.Sliders className="w-4 h-4 text-primary" />
             {category.playground.title}
           </h2>
@@ -311,14 +322,14 @@ export const Playground: React.FC<PlaygroundProps> = ({
 
       {/* Live Preview & Output Panel (Right Side) */}
       <div className="flex-1 flex flex-col gap-4">
-        {/* Preview Tabs formatted as Linear toggle pills */}
+        {/* Preview Tabs formatted as Mastercard stadium toggle pills */}
         <div className="flex items-center justify-between border-b border-hairline pb-2">
-          <div className="bg-canvas border border-hairline p-0.5 rounded-md flex">
+          <div className="bg-canvas border border-hairline p-0.5 rounded-full flex">
             <button
               onClick={() => setActiveTab('preview')}
-              className={`px-3 py-1 rounded-sm text-[11px] font-medium transition-all ${
+              className={`px-4 py-1 rounded-full text-[11px] font-medium transition-all ${
                 activeTab === 'preview'
-                  ? 'bg-surface-2 text-ink border border-hairline-strong shadow-sm lifted-edge'
+                  ? 'bg-surface-2 text-ink border border-hairline-strong shadow-sm'
                   : 'text-ink-subtle hover:text-ink'
               }`}
             >
@@ -326,9 +337,9 @@ export const Playground: React.FC<PlaygroundProps> = ({
             </button>
             <button
               onClick={() => setActiveTab('react')}
-              className={`px-3 py-1 rounded-sm text-[11px] font-medium transition-all ${
+              className={`px-4 py-1 rounded-full text-[11px] font-medium transition-all ${
                 activeTab === 'react'
-                  ? 'bg-surface-2 text-ink border border-hairline-strong shadow-sm lifted-edge'
+                  ? 'bg-surface-2 text-ink border border-hairline-strong shadow-sm'
                   : 'text-ink-subtle hover:text-ink'
               }`}
             >
@@ -338,7 +349,7 @@ export const Playground: React.FC<PlaygroundProps> = ({
           {activeTab === 'react' && (
             <button
               onClick={handleCopyCode}
-              className="flex items-center gap-1 text-[10px] text-primary hover:text-primary-hover font-semibold transition-all bg-primary/5 px-2.5 py-1 rounded-md border border-primary/10"
+              className="flex items-center gap-1 text-[10px] text-primary hover:text-primary-hover font-semibold transition-all bg-primary/5 px-2.5 py-1 rounded-full border border-primary/10"
             >
               {copiedCode ? (
                 <>
@@ -360,14 +371,14 @@ export const Playground: React.FC<PlaygroundProps> = ({
           {activeTab === 'preview' ? (
             renderPreview()
           ) : (
-            <div className="bg-canvas p-4 rounded-md border border-hairline overflow-x-auto text-[11px] font-mono text-primary whitespace-pre-wrap leading-relaxed select-all">
+            <div className="bg-canvas p-4 rounded-mc-btn border border-hairline overflow-x-auto text-[11px] font-mono text-primary whitespace-pre-wrap leading-relaxed select-all">
               {getReactTSCode()}
             </div>
           )}
         </div>
 
         {/* Classes Bar */}
-        <div className="p-3 bg-surface-2 rounded-md border border-hairline flex items-center justify-between shadow-sm lifted-edge">
+        <div className="p-3 bg-surface-2 rounded-mc-btn border border-hairline flex items-center justify-between shadow-sm">
           <div className="flex-1 min-w-0 pr-3">
             <span className="text-[9px] text-ink-subtle uppercase tracking-wider font-bold">
               Applied Tailwind Classes
@@ -383,7 +394,7 @@ export const Playground: React.FC<PlaygroundProps> = ({
               setTimeout(() => setCopiedCode(false), 1500);
             }}
             title="Copy classes string"
-            className="p-1.5 rounded-md bg-surface-3 border border-hairline text-ink-subtle hover:text-ink hover:border-hairline-strong transition-all flex-shrink-0"
+            className="p-1.5 rounded-full bg-surface-3 border border-hairline text-ink-subtle hover:text-ink hover:border-hairline-strong transition-all flex-shrink-0"
           >
             <Icons.Copy className="w-3.5 h-3.5" />
           </button>
