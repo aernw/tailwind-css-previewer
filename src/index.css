@@ -1,24 +1,74 @@
 /* Custom fonts import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @import "tailwindcss";
 
-
-/* Configure custom theme tokens for Tailwind v4 */
+/* Configure custom theme tokens for Tailwind v4 following Linear Design Spec */
 @theme {
-  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', SF Pro Display, -apple-system, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SF Mono, monospace;
+
+  /* Colors default to Dark Mode values */
+  --color-canvas: #010102;
+  --color-surface-1: #09090b;
+  --color-surface-2: #121214;
+  --color-surface-3: #1a1a1e;
+  --color-surface-4: #232329;
+
+  --color-hairline: #23252a;
+  --color-hairline-strong: #353842;
+  --color-hairline-tertiary: #1b1c21;
+
+  --color-ink: #f7f8f8;
+  --color-ink-muted: #d0d6e0;
+  --color-ink-subtle: #8a8f98;
+  --color-ink-tertiary: #62666d;
+
+  --color-primary: #5e6ad2;
+  --color-primary-hover: #828fff;
+  --color-primary-focus: #5e69d1;
+  --color-brand-secure: #7a7fad;
+
+  --color-semantic-success: #27a644;
+
+  /* Letter Spacing mapped to Linear Spec */
+  --tracking-display-xl: -3.0px;
+  --tracking-display-lg: -1.8px;
+  --tracking-display-md: -1.0px;
+  --tracking-headline: -0.6px;
+  --tracking-card-title: -0.4px;
+  --tracking-subhead: -0.2px;
+  --tracking-body-lg: -0.1px;
+  --tracking-body: -0.05px;
+  --tracking-eyebrow: 0.4px;
+}
+
+/* Light Mode Overrides: Directly redefine Tailwind v4 compiled CSS variables */
+.light {
+  --color-canvas: #ffffff;
+  --color-surface-1: #f7f8fa;
+  --color-surface-2: #eff1f4;
+  --color-surface-3: #e5e8eb;
+  --color-surface-4: #dadde2;
+
+  --color-hairline: #e2e4e9;
+  --color-hairline-strong: #c2c5cc;
+  --color-hairline-tertiary: #f0f2f5;
+
+  --color-ink: #0d0e11;
+  --color-ink-muted: #3c3f46;
+  --color-ink-subtle: #6c7078;
+  --color-ink-tertiary: #9b9fa8;
+
+  --color-primary: #5e6ad2;
+  --color-primary-hover: #4b55b3; /* Slightly darker lavender for readable contrast on white background */
+  --color-primary-focus: #5e69d1;
 }
 
 /* Base styles and custom styling */
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased font-sans selection:bg-indigo-500 selection:text-white;
-    background-image: 
-      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
-      radial-gradient(at 50% 0%, rgba(139, 92, 246, 0.04) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.06) 0px, transparent 50%);
-    background-attachment: fixed;
+    @apply bg-canvas text-ink antialiased font-sans transition-colors duration-200;
     min-height: 100vh;
   }
 
@@ -28,58 +78,52 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-slate-950/20;
+    @apply bg-canvas;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-800 rounded-full hover:bg-slate-700 transition-colors;
+    @apply bg-surface-3 rounded-full hover:bg-surface-4 transition-colors;
+  }
+
+  /* Form and inputs styling */
+  input[type="range"]::-webkit-slider-runnable-track {
+    @apply bg-surface-3 rounded-full transition-colors duration-200;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    @apply bg-primary hover:bg-primary-hover border-none rounded-full w-3.5 h-3.5 -mt-1 transition-all shadow-sm;
   }
 }
 
-/* Glassmorphism panel styling */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+/* Subtle white edge highlight on the top edge of lifted panels */
+.lifted-edge {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.2s ease;
 }
 
-.glass-panel-light {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+.light .lifted-edge {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
 }
 
-.glass-card {
-  background: rgba(30, 41, 59, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+/* Linear-styled cards */
+.linear-card {
+  @apply bg-surface-1 border border-hairline rounded-lg transition-all duration-200;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
 }
 
-.glass-card:hover {
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(99, 102, 241, 0.25);
-  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+.light .linear-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.015);
 }
 
-/* Grid pattern background for live playground */
+.linear-card:hover {
+  @apply bg-surface-2 border-hairline-strong;
+}
+
+/* Animated dot grid background for the playground (very subtle tint) */
 .bg-grid-pattern {
-  background-size: 20px 20px;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  transition: background-image 0.2s ease;
 }
 
-/* Dynamic active glowing border */
-.glow-border-indigo {
-  box-shadow: 0 0 15px -3px rgba(99, 102, 241, 0.5);
-  border-color: rgba(99, 102, 241, 0.6);
-}
-
-/* Shimmer animation */
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-.animate-shimmer {
-  animation: shimmer 2s infinite;
+.light .bg-grid-pattern {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
