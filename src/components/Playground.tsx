@@ -339,9 +339,11 @@ export const Playground: React.FC<PlaygroundProps> = ({
             <Icons.Sliders className="w-4 h-4 text-primary" />
             {category.playground.title}
           </h2>
-          <p className="text-xs text-ink-subtle mt-1 leading-normal">
-            {category.playground.description}
-          </p>
+          {category.playground.description && (
+            <p className="text-xs text-ink-subtle mt-1 leading-normal">
+              {category.playground.description}
+            </p>
+          )}
         </div>
         <div className="border-t border-hairline pt-4">
           {renderControls()}

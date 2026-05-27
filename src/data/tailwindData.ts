@@ -27,11 +27,12 @@ export interface PlaygroundControl {
 export interface CategoryData {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   iconName: string;
   groups: UtilityGroup[];
   playground: {
     title: string;
+    description?: string;
     controls: PlaygroundControl[];
     defaultStyles: string; // Base classes for preview
     previewType: 'text' | 'box' | 'flex' | 'grid' | 'card' | 'animation';

@@ -76,14 +76,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Category List */}
       <div className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5 scrollbar-thin">
-        <div className="px-3 mb-2 text-[10px] font-bold text-ink-subtle tracking-mc-eyebrow uppercase flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-          Constellations
-        </div>
         {categories.map((category) => {
           const IconComponent = (Icons as any)[category.iconName] || Icons.BookOpen;
           const isSelected = selectedCategoryId === category.id && !searchQuery;
-          
+
           return (
             <button
               key={category.id}
@@ -91,16 +87,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onSearchChange(''); // Reset search when clicking category
                 onSelectCategory(category.id);
               }}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-mc-btn text-left transition-all ${
-                isSelected
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-mc-btn text-left transition-all ${isSelected
                   ? 'bg-surface-2 border-l-2 border-primary text-ink font-medium shadow-sm'
                   : 'text-ink-subtle hover:text-ink hover:bg-surface-1/50 border-l-2 border-transparent'
-              }`}
+                }`}
             >
               <IconComponent
-                className={`w-4 h-4 flex-shrink-0 ${
-                  isSelected ? 'text-primary' : 'text-ink-subtle'
-                }`}
+                className={`w-4 h-4 flex-shrink-0 ${isSelected ? 'text-primary' : 'text-ink-subtle'
+                  }`}
               />
               <div className="flex-1 min-w-0">
                 <div className="text-xs truncate font-medium">{category.title}</div>
@@ -111,6 +105,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </button>
           );
         })}
+
+        {/* Free Playground Section */}
+        <div className="border-t border-hairline my-2 pt-2">
+          <button
+            onClick={() => {
+              onSearchChange(''); // Reset search when clicking
+              onSelectCategory('free-playground');
+            }}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-mc-btn text-left transition-all ${
+              selectedCategoryId === 'free-playground' && !searchQuery
+                ? 'bg-surface-2 border-l-2 border-primary text-ink font-medium shadow-sm'
+                : 'text-ink-subtle hover:text-ink hover:bg-surface-1/50 border-l-2 border-transparent'
+            }`}
+          >
+            <Icons.Cpu className={`w-4 h-4 flex-shrink-0 ${
+              selectedCategoryId === 'free-playground' && !searchQuery ? 'text-primary' : 'text-ink-subtle'
+            }`} />
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-semibold">Free Playground</div>
+              <div className="text-[10px] text-ink-tertiary truncate mt-0.5 uppercase tracking-wider font-semibold">
+                Build Custom Component
+              </div>
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Sidebar Controls Panel (Theme Switcher and Repository Links) */}
